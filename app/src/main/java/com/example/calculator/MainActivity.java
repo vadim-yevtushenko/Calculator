@@ -7,24 +7,24 @@ import android.widget.Button;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
-    private Button btn1;
-    private Button btn2;
-    private Button btn3;
-    private Button btn4;
-    private Button btn5;
-    private Button btn6;
-    private Button btn7;
-    private Button btn8;
-    private Button btn9;
-    private Button btn0;
-    private Button btnComma;
-    private Button btnMinusValue;
-    private Button btnPlus;
-    private Button btnMinus;
-    private Button btnMulti;
-    private Button btnDiv;
-    private Button btnCancel;
-    private Button btnResult;
+    private Button b1;
+    private Button b2;
+    private Button b3;
+    private Button b4;
+    private Button b5;
+    private Button b6;
+    private Button b7;
+    private Button b8;
+    private Button b9;
+    private Button b0;
+    private Button bComma;
+    private Button bMinusValue;
+    private Button bPlus;
+    private Button bMinus;
+    private Button bMulti;
+    private Button bDiv;
+    private Button bCancel;
+    private Button bResult;
     private TextView operation;
     private TextView allOperation;
 
@@ -39,185 +39,263 @@ public class MainActivity extends AppCompatActivity {
         allOperation = findViewById(R.id.allOperation);
         operation = findViewById(R.id.operation);
 
-        btn0 = findViewById(R.id.b0);
-        btn0.setOnClickListener(v -> {
+        b0 = findViewById(R.id.b0);
+        b0.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("0");
+            stringToCalc.append("0");
             operation.setText(stringToShow.toString());
         });
-        btn1 = findViewById(R.id.b1);
-        btn1.setOnClickListener(v -> {
+        b1 = findViewById(R.id.b1);
+        b1.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("1");
+            stringToCalc.append("1");
             operation.setText(stringToShow.toString());
         });
-        btn2 = findViewById(R.id.b2);
-        btn2.setOnClickListener(v -> {
+        b2 = findViewById(R.id.b2);
+        b2.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("2");
+            stringToCalc.append("2");
             operation.setText(stringToShow.toString());
         });
-        btn3 = findViewById(R.id.b3);
-        btn3.setOnClickListener(v -> {
+        b3 = findViewById(R.id.b3);
+        b3.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("3");
+            stringToCalc.append("3");
             operation.setText(stringToShow.toString());
         });
-        btn4 = findViewById(R.id.b4);
-        btn4.setOnClickListener(v -> {
+        b4 = findViewById(R.id.b4);
+        b4.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("4");
+            stringToCalc.append("4");
             operation.setText(stringToShow.toString());
         });
-        btn5 = findViewById(R.id.b5);
-        btn5.setOnClickListener(v -> {
+        b5 = findViewById(R.id.b5);
+        b5.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("5");
+            stringToCalc.append("5");
             operation.setText(stringToShow.toString());
         });
-        btn6 = findViewById(R.id.b6);
-        btn6.setOnClickListener(v -> {
+        b6 = findViewById(R.id.b6);
+        b6.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("6");
+            stringToCalc.append("6");
             operation.setText(stringToShow.toString());
         });
-        btn7 = findViewById(R.id.b7);
-        btn7.setOnClickListener(v -> {
+        b7 = findViewById(R.id.b7);
+        b7.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("7");
+            stringToCalc.append("7");
             operation.setText(stringToShow.toString());
         });
-        btn8 = findViewById(R.id.b8);
-        btn8.setOnClickListener(v -> {
+        b8 = findViewById(R.id.b8);
+        b8.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("8");
+            stringToCalc.append("8");
             operation.setText(stringToShow.toString());
         });
-        btn9 = findViewById(R.id.b9);
-        btn9.setOnClickListener(v -> {
+        b9 = findViewById(R.id.b9);
+        b9.setOnClickListener(v -> {
             if (stringToShow.toString().equals("0")) {
                 stringToShow.setLength(0);
             }
             stringToShow.append("9");
+            stringToCalc.append("9");
             operation.setText(stringToShow.toString());
         });
-        btnComma = findViewById(R.id.bComma);
-        btnComma.setOnClickListener(v -> {
+
+        bComma = findViewById(R.id.bComma);
+        bComma.setOnClickListener(v -> {
             if (stringToShow.length() < 1) {
                 stringToShow.append("0,");
+                stringToCalc.append("0,");
             } else {
                 stringToShow.append(",");
+                stringToCalc.append(",");
             }
             operation.setText(stringToShow.toString());
         });
-        btnMinusValue = findViewById(R.id.bMinusValue);
-        btnMinusValue.setOnClickListener(v -> {
-            if (stringToShow.toString().startsWith("-")) {
+
+        bMinusValue = findViewById(R.id.bMinusValue);
+        bMinusValue.setOnClickListener(v -> {
+            int length = stringToCalc.toString().split(" ").length;
+            if (length > 2){
+                stringToShow.insert(0, "-");
+                String str = insMinus(stringToCalc.toString());
+                stringToCalc.setLength(0);
+                stringToCalc.append(str);
+            }else if (length > 1){
+                stringToCalc.append("-");
+                stringToShow.insert(0, "-");
+            }else if (stringToShow.toString().startsWith("-")) {
                 stringToShow.replace(0, 1, "");
+                stringToCalc.replace(0, 1, "");
             } else {
                 stringToShow.insert(0, "-");
+                stringToCalc.insert(0, "-");
 
             }
             operation.setText(stringToShow.toString());
         });
-        btnPlus = findViewById(R.id.bPlus);
-        btnPlus.setOnClickListener(v -> {
+
+        bPlus = findViewById(R.id.bPlus);
+        bPlus.setOnClickListener(v -> {
+            int length = stringToCalc.toString().split(" ").length;
+            if (length > 2){
+                try {
+                    String result = Calculator.calculate(stringToCalc.toString());
+                    stringToCalc.setLength(0);
+                    stringToCalc.append(result);
+                    allOperation.setText(stringToCalc.toString());
+                } catch (Exception e) {
+
+                }
+            }
             if (stringToCalc.toString().endsWith("+ ")) {
                 stringToShow.append("+");
             } else if (stringToShow.length() < 1 && (stringToCalc.toString().endsWith("- ") || stringToCalc.toString().endsWith("* ") || stringToCalc.toString().endsWith("/ "))) {
                 stringToCalc.setLength(stringToCalc.length() - 3);
-                stringToCalc.append(stringToShow).append(" + ");
+                stringToCalc.append(" + ");
                 stringToShow.setLength(0);
                 stringToShow.append("+");
             } else {
-                stringToCalc.append(stringToShow).append(" + ");
+                stringToCalc.append(" + ");
                 stringToShow.setLength(0);
                 stringToShow.append("+");
             }
             operation.setText(stringToShow.toString());
             stringToShow.setLength(0);
         });
-        btnMinus = findViewById(R.id.bMinus);
-        btnMinus.setOnClickListener(v -> {
+
+        bMinus = findViewById(R.id.bMinus);
+        bMinus.setOnClickListener(v -> {
+            int length = stringToCalc.toString().split(" ").length;
+            if (length > 2){
+                try {
+                    String result = Calculator.calculate(stringToCalc.toString());
+                    stringToCalc.setLength(0);
+                    stringToCalc.append(result);
+                    allOperation.setText(stringToCalc.toString());
+                } catch (Exception e) {
+
+                }
+            }
             if (stringToCalc.toString().endsWith("- ")) {
                 stringToShow.append("-");
             } else if (stringToShow.length() < 1 && (stringToCalc.toString().endsWith("+ ") || stringToCalc.toString().endsWith("* ") || stringToCalc.toString().endsWith("/ "))) {
                 stringToCalc.setLength(stringToCalc.length() - 3);
-                stringToCalc.append(stringToShow).append(" - ");
+                stringToCalc.append(" - ");
                 stringToShow.setLength(0);
                 stringToShow.append("-");
             } else {
-                stringToCalc.append(stringToShow).append(" - ");
+                stringToCalc.append(" - ");
                 stringToShow.setLength(0);
                 stringToShow.append("-");
             }
             operation.setText(stringToShow.toString());
             stringToShow.setLength(0);
         });
-        btnMulti = findViewById(R.id.bMulti);
-        btnMulti.setOnClickListener(v -> {
+
+        bMulti = findViewById(R.id.bMulti);
+        bMulti.setOnClickListener(v -> {
+            int length = stringToCalc.toString().split(" ").length;
+            if (length > 2){
+                try {
+                    String result = Calculator.calculate(stringToCalc.toString());
+                    stringToCalc.setLength(0);
+                    stringToCalc.append(result);
+                    allOperation.setText(stringToCalc.toString());
+                } catch (Exception e) {
+
+                }
+            }
             if (stringToCalc.toString().endsWith("* ")) {
                 stringToShow.append("*");
             } else if (stringToShow.length() < 1 && (stringToCalc.toString().endsWith("- ") || stringToCalc.toString().endsWith("+ ") || stringToCalc.toString().endsWith("/ "))) {
                 stringToCalc.setLength(stringToCalc.length() - 3);
-                stringToCalc.append(stringToShow).append(" * ");
+                stringToCalc.append(" * ");
                 stringToShow.setLength(0);
                 stringToShow.append("*");
             } else {
-                stringToCalc.append(stringToShow).append(" * ");
+                stringToCalc.append(" * ");
                 stringToShow.setLength(0);
                 stringToShow.append("*");
             }
             operation.setText(stringToShow.toString());
             stringToShow.setLength(0);
         });
-        btnDiv = findViewById(R.id.bDiv);
-        btnDiv.setOnClickListener(v -> {
+
+        bDiv = findViewById(R.id.bDiv);
+        bDiv.setOnClickListener(v -> {
+            int length = stringToCalc.toString().split(" ").length;
+            if (length > 2){
+                try {
+                    String result = Calculator.calculate(stringToCalc.toString());
+                    stringToCalc.setLength(0);
+                    stringToCalc.append(result);
+                    allOperation.setText(stringToCalc.toString());
+                } catch (Exception e) {
+
+                }
+            }
             if (stringToCalc.toString().endsWith("/ ")) {
                 stringToShow.append("/");
             } else if (stringToShow.length() < 1 && (stringToCalc.toString().endsWith("- ") || stringToCalc.toString().endsWith("* ") || stringToCalc.toString().endsWith("+ "))) {
                 stringToCalc.setLength(stringToCalc.length() - 3);
-                stringToCalc.append(stringToShow).append(" / ");
+                stringToCalc.append(" / ");
                 stringToShow.setLength(0);
                 stringToShow.append("/");
             } else {
-                stringToCalc.append(stringToShow).append(" / ");
+                stringToCalc.append(" / ");
                 stringToShow.setLength(0);
                 stringToShow.append("/");
             }
             operation.setText(stringToShow.toString());
             stringToShow.setLength(0);
         });
-        btnCancel = findViewById(R.id.bCancel);
-        btnCancel.setOnClickListener(v -> {
-            if (stringToShow.length() > 0) {
+
+        bCancel = findViewById(R.id.bCancel);
+        bCancel.setOnClickListener(v -> {
+            if (stringToShow.length() == 1){
                 stringToShow.setLength(stringToShow.length() - 1);
-            } else {
+                stringToShow.append("0");
+            } else  if (stringToShow.length() > 0) {
+                stringToShow.setLength(stringToShow.length() - 1);
+            }else {
                 stringToShow.append("0");
             }
             operation.setText(stringToShow.toString());
         });
-        btnResult = findViewById(R.id.bResult);
-        btnResult.setOnClickListener(v -> {
-            stringToCalc.append(stringToShow);
+
+        bResult = findViewById(R.id.bResult);
+        bResult.setOnClickListener(v -> {
+
             String result = "0";
             try {
                 result = Calculator.calculate(stringToCalc.toString());
@@ -225,9 +303,19 @@ public class MainActivity extends AppCompatActivity {
 
             }
             operation.setText(result);
-            allOperation.setText(stringToCalc);
+            allOperation.setText("");
             stringToShow.setLength(0);
             stringToCalc.setLength(0);
         });
+    }
+
+    private String insMinus(String string) {
+        String[] strings = string.split(" ");
+        StringBuilder stringBuilder = new StringBuilder();
+        stringBuilder.append(strings[0] + " ");
+        stringBuilder.append(strings[1] + " ");
+        stringBuilder.append("-" + strings[2]);
+
+        return stringBuilder.toString();
     }
 }
